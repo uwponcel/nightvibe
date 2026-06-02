@@ -39,7 +39,8 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
-        <div className="seam-divider" aria-hidden="true" />
+        {/* Flat divider here: a skewed line would cut into the marquee text. */}
+        <div className="seam-divider seam-divider--flat" aria-hidden="true" />
         <Services />
         <div className="seam-divider" aria-hidden="true" />
         <Story />

@@ -54,6 +54,12 @@ svg {
   max-width: 100%;
 }
 
+/* Let CSS aspect-ratio win over the width/height attributes (which only
+   exist to reserve layout space before load). */
+img {
+  height: auto;
+}
+
 a {
   color: inherit;
 }
