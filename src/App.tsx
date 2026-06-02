@@ -9,6 +9,7 @@ import {
   Infos,
   Reviews,
   Services,
+  Story,
   Team,
   Wall,
 } from './components/Sections';
@@ -40,6 +41,8 @@ export default function App() {
         <Hero />
         <div className="seam-divider" aria-hidden="true" />
         <Services />
+        <div className="seam-divider" aria-hidden="true" />
+        <Story />
         <div className="seam-divider" aria-hidden="true" />
         <Team />
         <div className="seam-divider" aria-hidden="true" />

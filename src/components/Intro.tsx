@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { animate, createTimeline, cubicBezier, engine, stagger } from 'animejs';
-import { LogoN } from './LogoN';
+import { LogoMark } from './LogoMark';
 
 // Keep the intro running even when the tab/window is not visible (it is
 // short, and freezing it would leave the overlay stuck on screen).
@@ -11,12 +11,12 @@ const SEEN_KEY = 'nv_intro_seen';
 /**
  * "The Lock & The Reveal" intro.
  *
- * Phase 1 — Lock: the two pieces of the N slide in from opposite corners and
- * snap together; a white flash runs along the seam; the wordmark staggers in.
+ * Phase 1 — Lock: the N mark snaps into place (scale settle + a white flash
+ * along its diagonal seam) and the wordmark staggers in.
  *
  * Phase 2 — Reveal: the overlay is two vertical panels, each holding a
  * synchronized copy of the locked stage. They slide apart, splitting the
- * logo and revealing the hero beneath.
+ * screen through the logo and revealing the hero beneath.
  */
 export function Intro({ onDone }: { onDone: () => void }) {
   const skipped =
@@ -55,22 +55,12 @@ export function Intro({ onDone }: { onDone: () => void }) {
     // Dev/demo affordance: allows scrubbing the intro from the console.
     (window as Window & { __nvTl?: unknown }).__nvTl = tl;
 
-    tl.add('.intro-lock .n-upper', {
-      translateX: ['-60vw', '0vw'],
-      translateY: ['-60vh', '0vh'],
-      duration: 900,
+    tl.add('.intro-lock .intro-logo', {
+      opacity: [0, 1],
+      scale: [1.12, 1],
+      duration: 750,
     })
-      .add(
-        '.intro-lock .n-lower',
-        {
-          translateX: ['60vw', '0vw'],
-          translateY: ['60vh', '0vh'],
-          duration: 900,
-        },
-        0,
-      )
-      .add('.intro-lock .intro-logo', { scale: [1.04, 1], duration: 140 }, '-=80')
-      .add('.intro-lock .seam-flash', { opacity: [0, 1, 0], duration: 200 }, '-=120')
+      .add('.intro-lock .seam-flash', { opacity: [0, 1, 0], duration: 220 }, '-=180')
       .add(
         '.intro-lock .wm-letter',
         {
@@ -79,10 +69,10 @@ export function Intro({ onDone }: { onDone: () => void }) {
           delay: stagger(28),
           duration: 480,
         },
-        '-=60',
+        '-=120',
       )
       // Swap the single lock stage for the duplicated panel stages.
-      .add('.intro-lock', { opacity: [1, 0], duration: 0 }, '+=300')
+      .add('.intro-lock', { opacity: [1, 0], duration: 0 }, '+=350')
       .add('.intro-panels', { opacity: [0, 1], duration: 0 }, '<')
       .add('.panel-left', { translateX: ['0%', '-100%'], duration: 1000 }, '<')
       .add('.panel-right', { translateX: ['0%', '100%'], duration: 1000 }, '<')
@@ -115,13 +105,13 @@ export function Intro({ onDone }: { onDone: () => void }) {
   const stage = (
     <div className="intro-stage" aria-hidden="true">
       <div className="intro-logo">
-        <LogoN color="var(--fg)" className="intro-logo-svg" />
+        <LogoMark className="intro-logo-img" />
         <div className="seam-flash" />
       </div>
       <p className="intro-wordmark">
         {'NIGHT VIBE'.split('').map((ch, i) => (
           <span key={i} className="wm-letter">
-            {ch === ' ' ? ' ' : ch}
+            {ch === ' ' ? ' ' : ch}
           </span>
         ))}
       </p>

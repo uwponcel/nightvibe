@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
-import { LogoN } from './LogoN';
-import { CONTACT, getOpenState } from '../data';
+import { LogoMark } from './LogoMark';
+import { CONTACT, RATING, getOpenState } from '../data';
 
 const TICKER = [
   'Coupe',
@@ -19,7 +19,7 @@ export function Hero() {
       {TICKER.map((t) => (
         <span key={t} className="marquee-item">
           {t}
-          <LogoN color="var(--fg-muted)" />
+          <LogoMark height={12} className="marquee-logo" />
         </span>
       ))}
     </span>
@@ -39,7 +39,7 @@ export function Hero() {
         </h1>
         <p className="hero-sub">
           La science de la lame. Coupes, barbes et lignes parfaites depuis
-          2014.
+          2011.
         </p>
         <div className="hero-ctas">
           <a className="btn btn-primary" href={CONTACT.phoneHref}>
@@ -50,7 +50,9 @@ export function Hero() {
           </a>
         </div>
         <div className="hero-trust">
-          <span>4,9 ★ — 141 avis Google</span>
+          <span>
+            {RATING.stars} ★ — {RATING.count} avis Google
+          </span>
           <span>
             <span
               className={`open-dot ${openState.open ? 'is-open' : ''}`}

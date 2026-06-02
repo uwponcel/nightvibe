@@ -22,14 +22,17 @@ npm run start      # sert dist/ (Railway)
 Railway (Nixpacks). `railway.json` définit build + start. Le serveur statique
 (`serve`) écoute sur `$PORT`.
 
-## Photos
+## Photos & logo
 
-Les photos actuelles sont des placeholders (picsum, niveaux de gris). Pour les
-remplacer : déposer les vraies photos dans `public/photos/` et mettre à jour
-les chemins dans `src/components/Sections.tsx` (helper `photo()`) et le fond
-de héros dans `src/App.css` (`.hero-bg`).
+Vraies photos du shop dans `public/photos/`, générées par
+`scripts/process-assets.py` (recadrage, redimensionnement, compression) à
+partir des originaux. Le logo officiel (`public/logo-white.png`, blanc sur
+transparent) est extrait de l'avatar Facebook ; `public/og.png` sert de
+favicon et d'image OG.
 
 ## Notes
 
 - Intro rejouable en console : `window.__nvIntroReplay()`
 - Prix et horaires : placeholders, à confirmer avec le client
+- Noms des barbiers : « Nom du barbier » + handle Instagram, à confirmer
+  (seul 2Saï est identifié)

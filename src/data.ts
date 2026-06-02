@@ -40,14 +40,19 @@ export const SERVICES: Service[] = [
 export interface Barber {
   name: string;
   title: string;
-  seed: string;
+  handle: string;
+  /** filename under /photos, or null for the "photo à venir" card */
+  photo: string | null;
 }
 
 export const BARBERS: Barber[] = [
-  { name: '2Saï', title: 'Maître barbier — depuis 2014', seed: 'nv-barber-1' },
-  { name: 'Sébastien Tremblay', title: 'Barbier', seed: 'nv-barber-2' },
-  { name: 'Kevin Campos', title: 'Barbier', seed: 'nv-barber-3' },
-  { name: 'Yan Bonneville', title: 'Barbier', seed: 'nv-barber-4' },
+  { name: '2Saï', title: 'Maître barbier', handle: 'alexis.2sai.grullon', photo: 'equipe-2sai.jpg' },
+  { name: 'Nom du barbier', title: 'Barbier', handle: 'barbercampos', photo: 'equipe-1.jpg' },
+  { name: 'Nom du barbier', title: 'Barbier', handle: 'yankenoby', photo: 'equipe-2.jpg' },
+  { name: 'Nom du barbier', title: 'Barbier', handle: 'molasauce', photo: 'equipe-3.jpg' },
+  { name: 'Nom du barbier', title: 'Barbier', handle: 'tony.sama_', photo: 'equipe-4.jpg' },
+  { name: 'Nom du barbier', title: 'Barbier', handle: 'cdingz.z', photo: 'equipe-5.jpg' },
+  { name: 'Nom du barbier', title: 'Barbier', handle: 'bonsgood', photo: null },
 ];
 
 export interface Review {
@@ -70,6 +75,8 @@ export const REVIEWS: Review[] = [
     author: 'Avis Google',
   },
 ];
+
+export const RATING = { stars: '4,9', count: 268 };
 
 /** [open, close] in hours, or null when closed. Index 0 = Sunday. */
 export const HOURS: ([number, number] | null)[] = [
@@ -126,7 +133,11 @@ export function getOpenState(now: Date = new Date()): OpenState {
 export const CONTACT = {
   phone: '(450) 432-4774',
   phoneHref: 'tel:+14504324774',
-  address: '314 rue Saint-Georges, Saint-Jérôme, QC J7Z 5A5',
+  address: '105 rue Valmont, Saint-Jérôme, QC',
   instagram: 'https://www.instagram.com/nightvibe/',
   facebook: 'https://www.facebook.com/boutiquenightvibe/',
 };
+
+export function igUrl(handle: string): string {
+  return `https://www.instagram.com/${handle}/`;
+}

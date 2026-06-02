@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
-import { LogoN } from './LogoN';
+import { LogoMark } from './LogoMark';
 import { CONTACT } from '../data';
 
 const LINKS = [
@@ -34,7 +34,7 @@ export function Nav() {
       <header className={`nav ${scrolled ? 'is-scrolled' : ''}`}>
         <div className="container nav-inner">
           <a href="#" className="nav-logo" aria-label="Night Vibe — accueil">
-            <LogoN color="var(--fg)" />
+            <LogoMark height={30} />
             <span>Night Vibe</span>
           </a>
           <nav aria-label="Navigation principale">

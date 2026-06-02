@@ -63,16 +63,16 @@
 .intro-logo {
   position: relative;
   width: clamp(110px, 16vw, 180px);
+  will-change: transform, opacity;
 }
 
-.intro-logo-svg {
+.intro-lock .intro-logo {
+  opacity: 0;
+}
+
+.intro-logo-img {
   width: 100%;
-  height: auto;
-}
-
-.intro-lock .n-upper,
-.intro-lock .n-lower {
-  will-change: transform;
+  height: auto !important;
 }
 
 /* White flash along the diagonal seam (≈9.6° from vertical). */
@@ -233,10 +233,6 @@
   text-decoration: none;
 }
 
-.nav-logo svg {
-  height: 30px;
-  width: auto;
-}
 
 .nav-logo span {
   font-family: var(--font-display);
@@ -366,10 +362,11 @@
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(to bottom, rgba(10, 10, 11, 0.82), rgba(10, 10, 11, 0.94)),
-    url('https://picsum.photos/seed/nv-hero/1600/1000?grayscale&blur=2');
+    linear-gradient(to bottom, rgba(10, 10, 11, 0.88), rgba(10, 10, 11, 0.95)),
+    url('/photos/hero.jpg');
   background-size: cover;
   background-position: center;
+  filter: grayscale(1);
 }
 
 .hero-content {
@@ -489,10 +486,8 @@
   animation-play-state: paused;
 }
 
-.marquee-track svg {
-  height: 12px;
-  width: auto;
-  opacity: 0.5;
+.marquee-logo {
+  opacity: 0.45;
 }
 
 .marquee-item {
@@ -577,6 +572,48 @@
   color: var(--fg-muted);
 }
 
+/* ========== Story ========== */
+
+.story {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (min-width: 860px) {
+  .story {
+    grid-template-columns: 1.1fr 0.9fr;
+  }
+}
+
+.story-text p {
+  color: var(--fg-muted);
+  max-width: 32rem;
+}
+
+.story-text strong {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.story-stats {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-top: 2rem;
+}
+
+.story-photo {
+  width: 100%;
+  max-height: 540px;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: grayscale(1) contrast(1.05);
+  border: 1px solid var(--hairline);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 5% 100%);
+}
+
 /* ========== Team ========== */
 
 .team-grid {
@@ -600,6 +637,27 @@
 
 .barber-card:hover .barber-photo {
   filter: grayscale(0);
+}
+
+.barber-photo--placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  background: var(--bg-deep);
+}
+
+.barber-photo--placeholder img {
+  opacity: 0.35;
+}
+
+.barber-photo--placeholder span {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--fg-muted);
 }
 
 .barber-meta {
@@ -879,10 +937,6 @@
   gap: 0.9rem;
 }
 
-.footer-brand svg {
-  height: 26px;
-  width: auto;
-}
 
 .footer-brand span {
   font-family: var(--font-mono);

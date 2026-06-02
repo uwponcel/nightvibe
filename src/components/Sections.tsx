@@ -13,15 +13,13 @@ import {
   CONTACT,
   DAY_NAMES,
   HOURS,
+  RATING,
   REVIEWS,
   SERVICES,
   formatHours,
+  igUrl,
 } from '../data';
-import { LogoN } from './LogoN';
-
-function photo(seed: string, w: number, h: number): string {
-  return `https://picsum.photos/seed/${seed}/${w}/${h}?grayscale`;
-}
+import { LogoMark } from './LogoMark';
 
 export function Services() {
   const ref = useReveal<HTMLDivElement>();
@@ -55,6 +53,45 @@ export function Services() {
   );
 }
 
+export function Story() {
+  const ref = useReveal<HTMLDivElement>();
+
+  return (
+    <section className="section" id="histoire">
+      <div className="container story reveal" ref={ref}>
+        <div className="story-text" data-reveal-i style={{ ['--ri' as string]: 0 }}>
+          <p className="overline">Notre histoire</p>
+          <h2 className="section-title">Une nouvelle ère</h2>
+          <p>
+            Depuis 2011, le 314 rue Saint-Georges a été bien plus qu'un
+            local : c'était notre maison, le cœur de tout ce qu'on a bâti
+            avec vous.
+          </p>
+          <p>
+            Aujourd'hui, une nouvelle page s'écrit au{' '}
+            <strong>105 rue Valmont</strong> — en attendant de vous dévoiler
+            le gros projet qu'on prépare en coulisses. Nouvelle adresse, même
+            énergie.
+          </p>
+          <p className="story-stats">
+            Depuis 2011 · {RATING.stars} ★ · {RATING.count} avis · Saint-Jérôme
+          </p>
+        </div>
+        <img
+          className="story-photo"
+          src="/photos/story.jpg"
+          alt="Façade du salon Night Vibe, enseigne « Salon de barbiers — Night Vibe »"
+          width={1000}
+          height={1333}
+          loading="lazy"
+          data-reveal-i
+          style={{ ['--ri' as string]: 1 }}
+        />
+      </div>
+    </section>
+  );
+}
+
 export function Team() {
   const ref = useReveal<HTMLDivElement>();
 
@@ -68,30 +105,39 @@ export function Team() {
         <div className="team-grid reveal" ref={ref}>
           {BARBERS.map((b, i) => (
             <article
-              key={b.name}
+              key={b.handle}
               className="barber-card"
               data-reveal-i
               style={{ ['--ri' as string]: i }}
             >
-              <img
-                className="barber-photo"
-                src={photo(b.seed, 480, 600)}
-                alt={`${b.name}, ${b.title.toLowerCase()} chez Night Vibe`}
-                width={480}
-                height={600}
-                loading="lazy"
-              />
+              {b.photo ? (
+                <img
+                  className="barber-photo"
+                  src={`/photos/${b.photo}`}
+                  alt={`${b.name === 'Nom du barbier' ? `@${b.handle}` : b.name}, barbier chez Night Vibe`}
+                  width={800}
+                  height={1067}
+                  loading="lazy"
+                />
+              ) : (
+                <div className="barber-photo barber-photo--placeholder">
+                  <LogoMark height="38%" />
+                  <span>Photo à venir</span>
+                </div>
+              )}
               <div className="barber-meta">
                 <div>
                   <h3 className="barber-name">{b.name}</h3>
-                  <p className="barber-title">{b.title}</p>
+                  <p className="barber-title">
+                    {b.title} · @{b.handle}
+                  </p>
                 </div>
                 <a
                   className="barber-ig"
-                  href={CONTACT.instagram}
+                  href={igUrl(b.handle)}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label={`Instagram de Night Vibe — ${b.name}`}
+                  aria-label={`Instagram de @${b.handle}`}
                 >
                   <Instagram size={18} />
                 </a>
@@ -104,7 +150,7 @@ export function Team() {
   );
 }
 
-const WALL_SEEDS = ['nv-cut-1', 'nv-cut-2', 'nv-cut-3', 'nv-cut-4', 'nv-cut-5', 'nv-cut-6'];
+const WALL = ['mur-1.jpg', 'mur-2.jpg', 'mur-3.jpg', 'mur-4.jpg', 'mur-5.jpg', 'mur-6.jpg'];
 
 export function Wall() {
   const ref = useReveal<HTMLDivElement>();
@@ -119,22 +165,22 @@ export function Wall() {
         <div className="wall-grid reveal" ref={ref}>
           <img
             className="wall-item is-feature"
-            src={photo('nv-feature', 900, 1100)}
-            alt="Coupe vedette de la semaine chez Night Vibe"
-            width={900}
-            height={1100}
+            src="/photos/mur-feature.jpg"
+            alt="Dégradé à la tondeuse, gros plan chez Night Vibe"
+            width={1100}
+            height={733}
             loading="lazy"
             data-reveal-i
             style={{ ['--ri' as string]: 0 }}
           />
-          {WALL_SEEDS.map((seed, i) => (
+          {WALL.map((photo, i) => (
             <img
-              key={seed}
+              key={photo}
               className="wall-item"
-              src={photo(seed, 480, 600)}
+              src={`/photos/${photo}`}
               alt={`Coupe réalisée chez Night Vibe (${i + 1})`}
-              width={480}
-              height={600}
+              width={800}
+              height={800}
               loading="lazy"
               data-reveal-i
               style={{ ['--ri' as string]: i + 1 }}
@@ -203,7 +249,9 @@ export function Reviews() {
             <ChevronRight size={18} />
           </button>
         </div>
-        <p className="reviews-badge">4,9 ★ sur Google — 141 avis vérifiés</p>
+        <p className="reviews-badge">
+          {RATING.stars} ★ sur Google — {RATING.count} avis vérifiés
+        </p>
       </div>
     </section>
   );
@@ -222,14 +270,14 @@ export function Boutique() {
             Vêtements urbains et produits coiffants sélectionnés par l'équipe,
             directement au shop.
           </p>
-          <p className="services-note">Disponible en boutique — 314 St-Georges.</p>
+          <p className="services-note">Disponible en boutique — 105 rue Valmont.</p>
         </div>
         <img
           className="boutique-photo"
-          src={photo('nv-shop', 800, 600)}
-          alt="Coin boutique streetwear chez Night Vibe"
-          width={800}
-          height={600}
+          src="/photos/boutique.jpg"
+          alt="Section boutique streetwear chez Night Vibe : vêtements et casquettes"
+          width={1000}
+          height={1332}
           loading="lazy"
           data-reveal-i
           style={{ ['--ri' as string]: 1 }}
@@ -272,9 +320,9 @@ export function Infos() {
           <div className="map-card" data-reveal-i style={{ ['--ri' as string]: 1 }}>
             <MapPin className="map-pin" size={28} aria-hidden="true" />
             <p className="map-address">
-              314 rue Saint-Georges
+              105 rue Valmont
               <br />
-              Saint-Jérôme, QC J7Z 5A5
+              Saint-Jérôme, QC
             </p>
           </div>
         </div>
@@ -288,7 +336,7 @@ export function Footer() {
     <footer className="footer">
       <div className="container footer-inner">
         <div className="footer-brand">
-          <LogoN color="var(--fg)" />
+          <LogoMark height={26} />
           <span>Night Vibe — Saint-Jérôme</span>
         </div>
         <div className="footer-social">
