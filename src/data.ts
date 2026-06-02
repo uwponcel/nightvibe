@@ -21,7 +21,7 @@ export const SERVICES: Service[] = [
     price: '30 $',
   },
   {
-    name: 'Ligne-up / contours',
+    name: 'Line up / contours',
     description: 'Contours nets entre deux coupes. Rapide et précis.',
     price: '20 $',
   },

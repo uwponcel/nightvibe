@@ -470,11 +470,12 @@
   background: rgba(10, 10, 11, 0.6);
 }
 
+/* No gap on the track: each unit carries its own spacing so the two halves
+   tile seamlessly and translateX(-50%) lands exactly on a half boundary. */
 .marquee-track {
   display: flex;
-  gap: 3rem;
   width: max-content;
-  animation: marquee 28s linear infinite;
+  animation: marquee 60s linear infinite;
   font-family: var(--font-mono);
   font-size: 0.75rem;
   letter-spacing: 0.3em;
@@ -486,15 +487,25 @@
   animation-play-state: paused;
 }
 
-.marquee-logo {
-  opacity: 0.45;
-}
-
-.marquee-item {
+.marquee-half {
   display: flex;
   align-items: center;
-  gap: 3rem;
+}
+
+.marquee-unit {
+  display: inline-flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding-right: 3rem;
   white-space: nowrap;
+}
+
+.marquee-unit > span {
+  line-height: 1;
+}
+
+.marquee-logo {
+  opacity: 0.45;
 }
 
 @keyframes marquee {

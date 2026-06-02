@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
 
 /**
- * Official Night Vibe "N" monogram (white variant on transparent), served
+ * Official Night-Vibe "N" monogram (white variant on transparent), served
  * from /logo-white.png. Height-driven sizing; width follows the 883:1463
  * aspect ratio.
  */

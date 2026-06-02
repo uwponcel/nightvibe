@@ -53,7 +53,7 @@ export function Services() {
 }
 
 const STORY_SLIDES = [
-  { photo: 'story.jpg', alt: 'Façade du salon Night Vibe, enseigne « Salon de barbiers — Night Vibe »' },
+  { photo: 'story.jpg', alt: 'Façade du salon Night-Vibe, enseigne « Salon de barbiers — Night-Vibe »' },
   { photo: 'story-2.jpg', alt: "Comptoir d'accueil du salon, chandails de hockey encadrés" },
   { photo: 'story-3.jpg', alt: 'Plancher du salon : chaises, miroirs et barbiers au travail' },
   { photo: 'story-4.jpg', alt: "Salle d'attente avec fauteuils en cuir et écrans géants" },
@@ -156,7 +156,7 @@ export function Team() {
               <img
                 className="barber-photo"
                 src={`/photos/${b.photo}`}
-                alt={`${b.name === 'Nom du barbier' ? `@${b.handle}` : b.name}, barbier chez Night Vibe`}
+                alt={`${b.name === 'Nom du barbier' ? `@${b.handle}` : b.name}, barbier chez Night-Vibe`}
                 width={800}
                 height={1067}
                 loading="lazy"
@@ -211,7 +211,7 @@ export function Wall() {
           <img
             className="wall-item is-feature"
             src="/photos/mur-feature.jpg"
-            alt="Dégradé à la tondeuse, gros plan chez Night Vibe"
+            alt="Dégradé à la tondeuse, gros plan chez Night-Vibe"
             width={1100}
             height={733}
             loading="lazy"
@@ -223,7 +223,7 @@ export function Wall() {
               key={photo}
               className="wall-item"
               src={`/photos/${photo}`}
-              alt={`Coupe réalisée chez Night Vibe (${i + 1})`}
+              alt={`Coupe réalisée chez Night-Vibe (${i + 1})`}
               width={800}
               height={800}
               loading="lazy"
@@ -312,7 +312,7 @@ export function Boutique() {
           <p className="overline">Partenaire</p>
           <h2 className="section-title">Boutique La Cité</h2>
           <p>
-            Streetwear et casquettes, en partenariat avec Night Vibe. Montez à
+            Streetwear et casquettes, en partenariat avec Night-Vibe. Montez à
             la mezzanine, juste au-dessus des chaises.
           </p>
           <p className="services-note">La mezzanine — 105 rue Valmont.</p>
@@ -320,7 +320,7 @@ export function Boutique() {
         <img
           className="boutique-photo"
           src="/photos/boutique.jpg"
-          alt="Boutique La Cité, à la mezzanine au-dessus de Night Vibe : vêtements et casquettes"
+          alt="Boutique La Cité, à la mezzanine au-dessus de Night-Vibe : vêtements et casquettes"
           width={1000}
           height={1332}
           loading="lazy"
@@ -365,7 +365,7 @@ export function Infos() {
           <div className="map-card" data-reveal-i style={{ ['--ri' as string]: 1 }}>
             <iframe
               className="map-frame"
-              title="Carte : Night Vibe, 105 rue Valmont, Saint-Jérôme"
+              title="Carte : Night-Vibe, 105 rue Valmont, Saint-Jérôme"
               src="https://www.google.com/maps?q=105+rue+Valmont,+Saint-J%C3%A9r%C3%B4me,+QC&hl=fr&z=15&output=embed"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -385,14 +385,14 @@ export function Footer() {
       <div className="container footer-inner">
         <div className="footer-brand">
           <LogoMark height={26} />
-          <span>Night Vibe — Saint-Jérôme</span>
+          <span>Night-Vibe — Saint-Jérôme</span>
         </div>
         <div className="footer-social">
           <a
             href={CONTACT.instagram}
             target="_blank"
             rel="noreferrer"
-            aria-label="Instagram de Night Vibe"
+            aria-label="Instagram de Night-Vibe"
           >
             <Instagram size={18} />
           </a>
@@ -400,12 +400,12 @@ export function Footer() {
             href={CONTACT.facebook}
             target="_blank"
             rel="noreferrer"
-            aria-label="Facebook de Night Vibe"
+            aria-label="Facebook de Night-Vibe"
           >
             <Facebook size={18} />
           </a>
         </div>
-        <p className="footer-credit">© 2026 Night Vibe · Démo conçue par Nord Studio</p>
+        <p className="footer-credit">© 2026 Night-Vibe · Démo conçue par Nord Studio</p>
       </div>
     </footer>
   );

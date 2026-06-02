@@ -5,20 +5,24 @@ import { RATING, getOpenState } from '../data';
 const TICKER = [
   'Coupe',
   'Barbe à la lame',
-  'Ligne-up',
+  'Line up',
   'Coupe enfant',
   'Taper',
   'Design',
 ];
 
+/** Items repeated per half so each half always exceeds the viewport width. */
+const TICKER_REPEAT = 3;
+
 export function Hero() {
   const openState = useMemo(() => getOpenState(), []);
 
-  const tickerItems = (
-    <span className="marquee-item" aria-hidden="true">
-      {TICKER.map((t) => (
-        <span key={t} className="marquee-item">
-          {t}
+  const half = Array.from({ length: TICKER_REPEAT }, () => TICKER).flat();
+  const tickerHalf = (
+    <span className="marquee-half">
+      {half.map((t, i) => (
+        <span key={i} className="marquee-unit">
+          <span>{t}</span>
           <LogoMark height={12} className="marquee-logo" />
         </span>
       ))}
@@ -64,8 +68,8 @@ export function Hero() {
       </div>
       <div className="marquee" aria-hidden="true">
         <div className="marquee-track">
-          {tickerItems}
-          {tickerItems}
+          {tickerHalf}
+          {tickerHalf}
         </div>
       </div>
     </section>

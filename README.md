@@ -1,6 +1,6 @@
-# Night Vibe — Demo
+# Night-Vibe — Demo
 
-Site démo pour Night Vibe (barbershop, Saint-Jérôme, QC). Conçu par Nord Studio.
+Site démo pour Night-Vibe (barbershop, Saint-Jérôme, QC). Conçu par Nord Studio.
 
 ## Stack
 
