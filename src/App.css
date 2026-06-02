@@ -622,6 +622,19 @@
   border: 1px solid var(--hairline);
   clip-path: polygon(0 0, 100% 0, 100% 100%, 5% 100%);
   overflow: hidden;
+  /* Horizontal swipes change slides; vertical stays free for page scroll. */
+  touch-action: pan-y;
+  user-select: none;
+  cursor: grab;
+}
+
+.story-carousel:active {
+  cursor: grabbing;
+}
+
+.story-carousel .story-photo {
+  -webkit-user-drag: none;
+  pointer-events: none;
 }
 
 .story-photo {
@@ -764,7 +777,10 @@
 .wall-item.is-feature {
   grid-column: span 2;
   grid-row: span 2;
+  /* Fill the full 2x2 grid area (rows are sized by the 4:5 portraits);
+     object-fit: cover crops the landscape source. */
   aspect-ratio: auto;
+  height: 100%;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 6% 100%);
 }
 

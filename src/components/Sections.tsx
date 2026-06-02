@@ -61,10 +61,13 @@ const STORY_SLIDES = [
 
 const STORY_ROTATE_MS = 5000;
 
+const SWIPE_THRESHOLD_PX = 40;
+
 export function Story() {
   const ref = useReveal<HTMLDivElement>();
   const [slide, setSlide] = useState(0);
   const timer = useRef<number | undefined>(undefined);
+  const swipeStartX = useRef<number | null>(null);
   const reduced = useRef(
     typeof window !== 'undefined' &&
       window.matchMedia('(prefers-reduced-motion: reduce)').matches,
@@ -81,7 +84,24 @@ export function Story() {
 
   const go = (i: number) => {
     window.clearInterval(timer.current);
-    setSlide(i);
+    setSlide(((i % STORY_SLIDES.length) + STORY_SLIDES.length) % STORY_SLIDES.length);
+  };
+
+  const onPointerDown = (e: React.PointerEvent) => {
+    swipeStartX.current = e.clientX;
+  };
+
+  const onPointerUp = (e: React.PointerEvent) => {
+    if (swipeStartX.current === null) return;
+    const dx = e.clientX - swipeStartX.current;
+    swipeStartX.current = null;
+    if (Math.abs(dx) >= SWIPE_THRESHOLD_PX) {
+      go(slide + (dx < 0 ? 1 : -1));
+    }
+  };
+
+  const onPointerCancel = () => {
+    swipeStartX.current = null;
   };
 
   return (
@@ -107,6 +127,10 @@ export function Story() {
           className="story-carousel"
           data-reveal-i
           style={{ ['--ri' as string]: 1 }}
+          onPointerDown={onPointerDown}
+          onPointerUp={onPointerUp}
+          onPointerCancel={onPointerCancel}
+          onPointerLeave={onPointerCancel}
         >
           {STORY_SLIDES.map((s, i) => (
             <img
