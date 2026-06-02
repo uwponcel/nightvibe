@@ -41,8 +41,8 @@ export interface Barber {
   name: string;
   title: string;
   handle: string;
-  /** filename under /photos, or null for the "photo à venir" card */
-  photo: string | null;
+  /** filename under /photos */
+  photo: string;
 }
 
 export const BARBERS: Barber[] = [
@@ -52,7 +52,6 @@ export const BARBERS: Barber[] = [
   { name: 'Nom du barbier', title: 'Barbier', handle: 'molasauce', photo: 'equipe-3.jpg' },
   { name: 'Nom du barbier', title: 'Barbier', handle: 'tony.sama_', photo: 'equipe-4.jpg' },
   { name: 'Nom du barbier', title: 'Barbier', handle: 'cdingz.z', photo: 'equipe-5.jpg' },
-  { name: 'Nom du barbier', title: 'Barbier', handle: 'bonsgood', photo: null },
 ];
 
 export interface Review {
@@ -81,12 +80,12 @@ export const RATING = { stars: '4,9', count: 268 };
 /** [open, close] in hours, or null when closed. Index 0 = Sunday. */
 export const HOURS: ([number, number] | null)[] = [
   null, // dimanche
-  null, // lundi
+  [10, 18], // lundi
   [10, 19], // mardi
   [10, 19], // mercredi
   [10, 19], // jeudi
   [10, 19], // vendredi
-  [10, 16], // samedi
+  [10, 17], // samedi
 ];
 
 export const DAY_NAMES = [

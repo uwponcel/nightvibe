@@ -69,9 +69,7 @@ export function Story() {
           </p>
           <p>
             Aujourd'hui, une nouvelle page s'écrit au{' '}
-            <strong>105 rue Valmont</strong> — en attendant de vous dévoiler
-            le gros projet qu'on prépare en coulisses. Nouvelle adresse, même
-            énergie.
+            <strong>105 rue Valmont</strong>. Nouvelle adresse, même énergie.
           </p>
           <p className="story-stats">
             Depuis 2011 · {RATING.stars} ★ · {RATING.count} avis · Saint-Jérôme
@@ -110,21 +108,14 @@ export function Team() {
               data-reveal-i
               style={{ ['--ri' as string]: i }}
             >
-              {b.photo ? (
-                <img
-                  className="barber-photo"
-                  src={`/photos/${b.photo}`}
-                  alt={`${b.name === 'Nom du barbier' ? `@${b.handle}` : b.name}, barbier chez Night Vibe`}
-                  width={800}
-                  height={1067}
-                  loading="lazy"
-                />
-              ) : (
-                <div className="barber-photo barber-photo--placeholder">
-                  <LogoMark height="38%" />
-                  <span>Photo à venir</span>
-                </div>
-              )}
+              <img
+                className="barber-photo"
+                src={`/photos/${b.photo}`}
+                alt={`${b.name === 'Nom du barbier' ? `@${b.handle}` : b.name}, barbier chez Night Vibe`}
+                width={800}
+                height={1067}
+                loading="lazy"
+              />
               <div className="barber-meta">
                 <div>
                   <h3 className="barber-name">{b.name}</h3>
