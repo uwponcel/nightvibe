@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { LogoMark } from './LogoMark';
-import { CONTACT } from '../data';
 
 const LINKS = [
   { href: '#services', label: 'Services' },
@@ -46,7 +45,7 @@ export function Nav() {
               ))}
             </ul>
           </nav>
-          <a className="btn btn-primary" href={CONTACT.phoneHref}>
+          <a className="btn btn-primary" href="#infos">
             Réserver
           </a>
           <button
@@ -68,7 +67,7 @@ export function Nav() {
           ))}
           <a
             className="btn btn-primary"
-            href={CONTACT.phoneHref}
+            href="#infos"
             onClick={() => setOpen(false)}
           >
             Réserver

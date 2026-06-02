@@ -4,7 +4,6 @@ import {
   ChevronRight,
   Facebook,
   Instagram,
-  MapPin,
   Phone,
 } from 'lucide-react';
 import { useReveal } from '../hooks/useReveal';
@@ -53,8 +52,37 @@ export function Services() {
   );
 }
 
+const STORY_SLIDES = [
+  { photo: 'story.jpg', alt: 'Façade du salon Night Vibe, enseigne « Salon de barbiers — Night Vibe »' },
+  { photo: 'story-2.jpg', alt: "Comptoir d'accueil du salon, chandails de hockey encadrés" },
+  { photo: 'story-3.jpg', alt: 'Plancher du salon : chaises, miroirs et barbiers au travail' },
+  { photo: 'story-4.jpg', alt: "Salle d'attente avec fauteuils en cuir et écrans géants" },
+];
+
+const STORY_ROTATE_MS = 5000;
+
 export function Story() {
   const ref = useReveal<HTMLDivElement>();
+  const [slide, setSlide] = useState(0);
+  const timer = useRef<number | undefined>(undefined);
+  const reduced = useRef(
+    typeof window !== 'undefined' &&
+      window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+  );
+
+  useEffect(() => {
+    if (reduced.current) return;
+    timer.current = window.setInterval(
+      () => setSlide((s) => (s + 1) % STORY_SLIDES.length),
+      STORY_ROTATE_MS,
+    );
+    return () => window.clearInterval(timer.current);
+  }, []);
+
+  const go = (i: number) => {
+    window.clearInterval(timer.current);
+    setSlide(i);
+  };
 
   return (
     <section className="section" id="histoire">
@@ -75,16 +103,33 @@ export function Story() {
             Depuis 2011 · {RATING.stars} ★ · {RATING.count} avis · Saint-Jérôme
           </p>
         </div>
-        <img
-          className="story-photo"
-          src="/photos/story.jpg"
-          alt="Façade du salon Night Vibe, enseigne « Salon de barbiers — Night Vibe »"
-          width={1000}
-          height={1333}
-          loading="lazy"
+        <div
+          className="story-carousel"
           data-reveal-i
           style={{ ['--ri' as string]: 1 }}
-        />
+        >
+          {STORY_SLIDES.map((s, i) => (
+            <img
+              key={s.photo}
+              className={`story-photo ${i === slide ? 'is-active' : ''}`}
+              src={`/photos/${s.photo}`}
+              alt={s.alt}
+              width={1000}
+              height={1332}
+              loading="lazy"
+            />
+          ))}
+          <div className="story-dots">
+            {STORY_SLIDES.map((s, i) => (
+              <button
+                key={s.photo}
+                className={i === slide ? 'is-active' : ''}
+                aria-label={`Photo ${i + 1} de ${STORY_SLIDES.length}`}
+                onClick={() => go(i)}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -141,7 +186,16 @@ export function Team() {
   );
 }
 
-const WALL = ['mur-1.jpg', 'mur-2.jpg', 'mur-3.jpg', 'mur-4.jpg', 'mur-5.jpg', 'mur-6.jpg'];
+const WALL = [
+  'mur-1.jpg',
+  'mur-2.jpg',
+  'mur-3.jpg',
+  'mur-4.jpg',
+  'mur-5.jpg',
+  'mur-6.jpg',
+  'mur-7.jpg',
+  'mur-8.jpg',
+];
 
 export function Wall() {
   const ref = useReveal<HTMLDivElement>();
@@ -309,12 +363,15 @@ export function Infos() {
             </div>
           </div>
           <div className="map-card" data-reveal-i style={{ ['--ri' as string]: 1 }}>
-            <MapPin className="map-pin" size={28} aria-hidden="true" />
-            <p className="map-address">
-              105 rue Valmont
-              <br />
-              Saint-Jérôme, QC
-            </p>
+            <iframe
+              className="map-frame"
+              title="Carte : Night Vibe, 105 rue Valmont, Saint-Jérôme"
+              src="https://www.google.com/maps?q=105+rue+Valmont,+Saint-J%C3%A9r%C3%B4me,+QC&hl=fr&z=15&output=embed"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+            <p className="map-address">105 rue Valmont · Saint-Jérôme, QC</p>
           </div>
         </div>
       </div>

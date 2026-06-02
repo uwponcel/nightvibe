@@ -56,6 +56,8 @@ MUR = [
     ("580a5ea53ea4ff077cc06b17_13002471_573586699483348_9203845627940981006_o.jpg", "mur-4.jpg", 800),
     ("580a5eaa6620dac506b9101b_13247741_588763997965618_3707782101246412805_o.jpg", "mur-5.jpg", 800),
     ("580a5ebb980071974fba1dd0_14372022_643740119134672_761889140443749292_o.jpg", "mur-6.jpg", 800),
+    ("580a5eb53ea4ff077cc06b19_13517589_603546203154064_176547278309271213_o.jpg", "mur-7.jpg", 800),
+    ("580a5eb7af35fbf87b987544_13938189_622581794583838_8564923679588230178_o.jpg", "mur-8.jpg", 800),
 ]
 
 
@@ -64,6 +66,9 @@ def main() -> None:
 
     export(SRC / "shop" / "shop-overview.jpg", "hero.jpg", 1920, 82)
     export(SRC / "shop" / "shop-front.jpg", "story.jpg", 1000)
+    export(SRC / "shop" / "shop-acceuil.jpg", "story-2.jpg", 1000)
+    export(SRC / "shop" / "shop-2.jpg", "story-3.jpg", 1000)
+    export(SRC / "shop" / "shop-waiting-room.jpg", "story-4.jpg", 1000)
     export(SRC / "shop" / "shop-upstairs.jpg", "boutique.jpg", 1000)
 
     export(SRC / "euqipe" / "2sai-2.jpg", "equipe-2sai.jpg", 800)

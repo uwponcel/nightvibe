@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { LogoMark } from './LogoMark';
-import { CONTACT, RATING, getOpenState } from '../data';
+import { RATING, getOpenState } from '../data';
 
 const TICKER = [
   'Coupe',
@@ -42,7 +42,7 @@ export function Hero() {
           2011.
         </p>
         <div className="hero-ctas">
-          <a className="btn btn-primary" href={CONTACT.phoneHref}>
+          <a className="btn btn-primary" href="#infos">
             Réserver une chaise
           </a>
           <a className="btn btn-ghost" href="#services">

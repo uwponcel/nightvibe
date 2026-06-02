@@ -604,14 +604,67 @@
   margin-top: 2rem;
 }
 
+.story-carousel {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  max-height: 560px;
+  border: 1px solid var(--hairline);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 5% 100%);
+  overflow: hidden;
+}
+
 .story-photo {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  max-height: 540px;
+  height: 100%;
   object-fit: cover;
   object-position: center 30%;
   filter: grayscale(1) contrast(1.05);
-  border: 1px solid var(--hairline);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 5% 100%);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.story-photo.is-active {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-photo {
+    transition: none;
+  }
+}
+
+.story-dots {
+  position: absolute;
+  bottom: 0.9rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 0.35rem;
+}
+
+.story-dots button {
+  width: 28px;
+  height: 28px;
+  background: none;
+  border: none;
+  position: relative;
+}
+
+.story-dots button::after {
+  content: '';
+  position: absolute;
+  inset: 50%;
+  width: 8px;
+  height: 8px;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.story-dots button.is-active::after {
+  background: var(--accent);
 }
 
 /* ========== Team ========== */
@@ -862,31 +915,29 @@
 
 .map-card {
   border: 1px solid var(--hairline);
-  background:
-    radial-gradient(circle at 65% 40%, rgba(232, 68, 46, 0.12), transparent 35%),
-    repeating-linear-gradient(0deg, transparent 0 39px, rgba(255, 255, 255, 0.05) 39px 40px),
-    repeating-linear-gradient(90deg, transparent 0 39px, rgba(255, 255, 255, 0.05) 39px 40px),
-    var(--bg-panel);
-  aspect-ratio: 4 / 3;
+  background: var(--bg-panel);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  text-align: center;
-  padding: 2rem;
 }
 
-.map-pin {
-  color: var(--accent);
+.map-frame {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 0;
+  display: block;
+  /* Dark-mode treatment for the light map tiles. */
+  filter: invert(0.92) hue-rotate(180deg) grayscale(0.3) contrast(0.92);
 }
 
 .map-address {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
-  line-height: 1.8;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
   color: var(--fg-muted);
   margin: 0;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--hairline);
+  text-align: center;
 }
 
 .infos-contact {
