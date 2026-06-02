@@ -255,18 +255,18 @@ export function Boutique() {
     <section className="section" id="boutique">
       <div className="container boutique reveal" ref={ref}>
         <div className="boutique-text" data-reveal-i style={{ ['--ri' as string]: 0 }}>
-          <p className="overline">La boutique</p>
-          <h2 className="section-title">Streetwear &amp; produits</h2>
+          <p className="overline">Partenaire</p>
+          <h2 className="section-title">Boutique La Cité</h2>
           <p>
-            Vêtements urbains et produits coiffants sélectionnés par l'équipe,
-            directement au shop.
+            Streetwear et casquettes, en partenariat avec Night Vibe. Montez à
+            la mezzanine, juste au-dessus des chaises.
           </p>
-          <p className="services-note">Disponible en boutique — 105 rue Valmont.</p>
+          <p className="services-note">La mezzanine — 105 rue Valmont.</p>
         </div>
         <img
           className="boutique-photo"
           src="/photos/boutique.jpg"
-          alt="Section boutique streetwear chez Night Vibe : vêtements et casquettes"
+          alt="Boutique La Cité, à la mezzanine au-dessus de Night Vibe : vêtements et casquettes"
           width={1000}
           height={1332}
           loading="lazy"
