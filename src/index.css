@@ -1,0 +1,69 @@
+:root {
+  /* color */
+  --bg-deep: #0a0a0b;
+  --bg-panel: #101012;
+  --fg: #f2f2f0;
+  --fg-muted: #8a8f98;
+  --accent: #e8442e;
+  --hairline: rgba(255, 255, 255, 0.1);
+  --seam: rgba(255, 255, 255, 0.18);
+
+  /* type */
+  --font-display: 'Inter', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-quote: 'Playfair Display', serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* scale */
+  --type-hero: clamp(3rem, 11vw, 10rem);
+  --type-h2: clamp(2rem, 5vw, 3.5rem);
+  --space-section: clamp(6rem, 12vh, 10rem);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  border-radius: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg-deep);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
