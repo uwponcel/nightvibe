@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { LogoMark } from './LogoMark';
-import { RATING, getOpenState } from '../data';
+import { RATING, getOpenState, photo } from '../data';
 
 const TICKER = [
   'Coupe',
@@ -31,9 +31,15 @@ export function Hero() {
 
   return (
     <section className="hero">
-      <div className="hero-bg" aria-hidden="true" />
+      <div
+        className="hero-bg"
+        aria-hidden="true"
+        style={{
+          backgroundImage: `linear-gradient(to bottom, rgba(10, 10, 11, 0.88), rgba(10, 10, 11, 0.95)), url(${photo('hero.jpg')})`,
+        }}
+      />
       <div className="container hero-content">
-        <p className="hero-overline">Barbershop — Saint-Jérôme</p>
+        <p className="hero-overline">Barbershop — Saint-Sauveur</p>
         <h1 className="hero-title">
           <span className="hero-line">Les vrais</span>
           <span className="hero-line">barbiers</span>

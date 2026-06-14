@@ -109,7 +109,7 @@ export function Intro({ onDone }: { onDone: () => void }) {
         <div className="seam-flash" />
       </div>
       <p className="intro-wordmark">
-        {'NIGHT-VIBE'.split('').map((ch, i) => (
+        {'BARBIER BORÉAL'.split('').map((ch, i) => (
           <span key={i} className="wm-letter">
             {ch === ' ' ? ' ' : ch}
           </span>

@@ -1,6 +1,8 @@
-# Night-Vibe — Demo
+# Barbier Boréal — Démo
 
-Site démo pour Night-Vibe (barbershop, Saint-Jérôme, QC). Conçu par Nord Studio.
+Site démo (barbershop fictif, Laurentides) conçu par Nord Studio. Publié comme
+démo cliquable sur `nordstudio.io/demos/barbier-boreal/`. Aucune donnée réelle :
+marque, équipe, adresse, téléphone et photos sont fictifs ou sous licence libre.
 
 ## Stack
 
@@ -14,25 +16,28 @@ Site démo pour Night-Vibe (barbershop, Saint-Jérôme, QC). Conçu par Nord Stu
 npm install
 npm run dev        # http://localhost:5173
 npm run build      # typecheck + build de production
-npm run start      # sert dist/ (Railway)
+npm run preview    # sert dist/ localement
 ```
 
-## Déploiement
+`vite.config.ts` fixe `base: '/demos/barbier-boreal/'` : le build est servi
+depuis ce sous-chemin sur nordstudio.io. Pour un déploiement autonome à la
+racine, repasser `base` à `/`.
 
-Railway (Nixpacks). `railway.json` définit build + start. Le serveur statique
-(`serve`) écoute sur `$PORT`.
+## Publication de la démo
 
-## Photos & logo
+Après un `npm run build`, copier le contenu de `dist/` (sauf logos PNG
+inutilisés) vers `nordstudio/public/demos/barbier-boreal/`. La pastille
+« Démo · Nord Studio » et les balises SEO sont injectées côté nordstudio via
+les marqueurs `<!-- @demo-footer -->` / `<!-- @demo-meta ... -->`.
 
-Vraies photos du shop dans `public/photos/`, générées par
-`scripts/process-assets.py` (recadrage, redimensionnement, compression) à
-partir des originaux. Le logo officiel (`public/logo-white.png`, blanc sur
-transparent) est extrait de l'avatar Facebook ; `public/og.png` sert de
-favicon et d'image OG.
+## Photos
+
+Photos de barbershop sous licence libre (Unsplash) dans `public/photos/`,
+résolues via `import.meta.env.BASE_URL` (voir `photo()` dans `src/data.ts`).
+Le logo est un glyphe SVG inline (`src/components/LogoMark.tsx`) ; le favicon
+est un data-URI SVG dans `index.html`.
 
 ## Notes
 
-- Intro rejouable en console : `window.__nvIntroReplay()`
-- Prix et horaires : placeholders, à confirmer avec le client
-- Noms des barbiers : « Nom du barbier » + handle Instagram, à confirmer
-  (seul 2Saï est identifié)
+- Intro rejouable : effacer `sessionStorage.nv_intro_seen` puis recharger.
+- Prix et horaires : valeurs de démonstration.

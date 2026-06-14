@@ -46,12 +46,12 @@ export interface Barber {
 }
 
 export const BARBERS: Barber[] = [
-  { name: '2Saï', title: 'Maître barbier', handle: 'alexis.2sai.grullon', photo: 'equipe-2sai.jpg' },
-  { name: 'Nom du barbier', title: 'Barbier', handle: 'barbercampos', photo: 'equipe-1.jpg' },
-  { name: 'Nom du barbier', title: 'Barbier', handle: 'yankenoby', photo: 'equipe-2.jpg' },
-  { name: 'Nom du barbier', title: 'Barbier', handle: 'molasauce', photo: 'equipe-3.jpg' },
-  { name: 'Nom du barbier', title: 'Barbier', handle: 'tony.sama_', photo: 'equipe-4.jpg' },
-  { name: 'Nom du barbier', title: 'Barbier', handle: 'cdingz.z', photo: 'equipe-5.jpg' },
+  { name: 'Léo', title: 'Maître barbier', handle: 'barbierboreal', photo: 'equipe-lead.jpg' },
+  { name: 'Mathis', title: 'Barbier', handle: 'barbierboreal', photo: 'equipe-1.jpg' },
+  { name: 'Sam', title: 'Barbier', handle: 'barbierboreal', photo: 'equipe-2.jpg' },
+  { name: 'Émile', title: 'Barbier', handle: 'barbierboreal', photo: 'equipe-3.jpg' },
+  { name: 'Noah', title: 'Barbier', handle: 'barbierboreal', photo: 'equipe-4.jpg' },
+  { name: 'Tom', title: 'Barbier', handle: 'barbierboreal', photo: 'equipe-5.jpg' },
 ];
 
 export interface Review {
@@ -75,7 +75,17 @@ export const REVIEWS: Review[] = [
   },
 ];
 
-export const RATING = { stars: '4,9', count: 268 };
+export const RATING = { stars: '4,9', count: 214 };
+
+/**
+ * Resolve a /public asset against the configured base path. Vite does not
+ * rewrite absolute `/foo` references that live in JS strings or in CSS
+ * `url()`, so the demo (served from /demos/barbier-boreal/) must build these
+ * URLs from `import.meta.env.BASE_URL` itself.
+ */
+export function photo(name: string): string {
+  return `${import.meta.env.BASE_URL}photos/${name}`;
+}
 
 /** [open, close] in hours, or null when closed. Index 0 = Sunday. */
 export const HOURS: ([number, number] | null)[] = [
@@ -130,11 +140,11 @@ export function getOpenState(now: Date = new Date()): OpenState {
 }
 
 export const CONTACT = {
-  phone: '(450) 432-4774',
-  phoneHref: 'tel:+14504324774',
-  address: '105 rue Valmont, Saint-Jérôme, QC',
-  instagram: 'https://www.instagram.com/nightvibe/',
-  facebook: 'https://www.facebook.com/boutiquenightvibe/',
+  phone: '(450) 555-0142',
+  phoneHref: 'tel:+14505550142',
+  address: '212 rue Principale, Saint-Sauveur, QC',
+  instagram: 'https://www.instagram.com/barbierboreal/',
+  facebook: 'https://www.facebook.com/barbierboreal/',
 };
 
 export function igUrl(handle: string): string {

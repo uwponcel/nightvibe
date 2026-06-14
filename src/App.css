@@ -365,9 +365,8 @@
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(to bottom, rgba(10, 10, 11, 0.88), rgba(10, 10, 11, 0.95)),
-    url('/photos/hero.jpg');
+  /* background-image (gradient + /photos/hero.jpg) is set inline in Hero.tsx
+     so it resolves against the demo's base path. */
   background-size: cover;
   background-position: center;
   filter: grayscale(1);

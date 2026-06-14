@@ -16,7 +16,7 @@ import {
   REVIEWS,
   SERVICES,
   formatHours,
-  igUrl,
+  photo,
 } from '../data';
 import { LogoMark } from './LogoMark';
 
@@ -53,10 +53,10 @@ export function Services() {
 }
 
 const STORY_SLIDES = [
-  { photo: 'story.jpg', alt: 'Façade du salon Night-Vibe, enseigne « Salon de barbiers — Night-Vibe »' },
-  { photo: 'story-2.jpg', alt: "Comptoir d'accueil du salon, chandails de hockey encadrés" },
-  { photo: 'story-3.jpg', alt: 'Plancher du salon : chaises, miroirs et barbiers au travail' },
-  { photo: 'story-4.jpg', alt: "Salle d'attente avec fauteuils en cuir et écrans géants" },
+  { photo: 'story.jpg', alt: 'Barbier au travail dans le salon Barbier Boréal' },
+  { photo: 'story-2.jpg', alt: 'Fauteuil de barbier en cuir, détail du poste de coupe' },
+  { photo: 'story-3.jpg', alt: 'Outils du barbier : tondeuses et peignes alignés' },
+  { photo: 'story-4.jpg', alt: 'Rasage de barbe à la lame, ambiance feutrée du salon' },
 ];
 
 const STORY_ROTATE_MS = 5000;
@@ -111,16 +111,15 @@ export function Story() {
           <p className="overline">Notre histoire</p>
           <h2 className="section-title">Une nouvelle ère</h2>
           <p>
-            Depuis 2011, le 314 rue Saint-Georges a été bien plus qu'un
-            local : c'était notre maison, le cœur de tout ce qu'on a bâti
-            avec vous.
+            Depuis 2011, le quartier nous connaît : un local de barbiers où
+            la coupe se prend au sérieux et où l'ambiance, elle, reste légère.
           </p>
           <p>
             Aujourd'hui, une nouvelle page s'écrit au{' '}
-            <strong>105 rue Valmont</strong>. Nouvelle adresse, même énergie.
+            <strong>212 rue Principale</strong>. Nouvelle adresse, même énergie.
           </p>
           <p className="story-stats">
-            Depuis 2011 · {RATING.stars} ★ · {RATING.count} avis · Saint-Jérôme
+            Depuis 2011 · {RATING.stars} ★ · {RATING.count} avis · Saint-Sauveur
           </p>
         </div>
         <div
@@ -136,7 +135,7 @@ export function Story() {
             <img
               key={s.photo}
               className={`story-photo ${i === slide ? 'is-active' : ''}`}
-              src={`/photos/${s.photo}`}
+              src={photo(s.photo)}
               alt={s.alt}
               width={1000}
               height={1332}
@@ -179,8 +178,8 @@ export function Team() {
             >
               <img
                 className="barber-photo"
-                src={`/photos/${b.photo}`}
-                alt={`${b.name === 'Nom du barbier' ? `@${b.handle}` : b.name}, barbier chez Night-Vibe`}
+                src={photo(b.photo)}
+                alt={`${b.name}, barbier chez Barbier Boréal`}
                 width={800}
                 height={1067}
                 loading="lazy"
@@ -194,10 +193,10 @@ export function Team() {
                 </div>
                 <a
                   className="barber-ig"
-                  href={igUrl(b.handle)}
+                  href={CONTACT.instagram}
                   target="_blank"
                   rel="noreferrer"
-                  aria-label={`Instagram de @${b.handle}`}
+                  aria-label="Instagram de Barbier Boréal"
                 >
                   <Instagram size={18} />
                 </a>
@@ -234,20 +233,20 @@ export function Wall() {
         <div className="wall-grid reveal" ref={ref}>
           <img
             className="wall-item is-feature"
-            src="/photos/mur-feature.jpg"
-            alt="Dégradé à la tondeuse, gros plan chez Night-Vibe"
+            src={photo('mur-feature.jpg')}
+            alt="Dégradé à la tondeuse, gros plan chez Barbier Boréal"
             width={1100}
             height={733}
             loading="lazy"
             data-reveal-i
             style={{ ['--ri' as string]: 0 }}
           />
-          {WALL.map((photo, i) => (
+          {WALL.map((file, i) => (
             <img
-              key={photo}
+              key={file}
               className="wall-item"
-              src={`/photos/${photo}`}
-              alt={`Coupe réalisée chez Night-Vibe (${i + 1})`}
+              src={photo(file)}
+              alt={`Coupe réalisée chez Barbier Boréal (${i + 1})`}
               width={800}
               height={800}
               loading="lazy"
@@ -258,7 +257,7 @@ export function Wall() {
         </div>
         <p className="wall-caption">
           <a href={CONTACT.instagram} target="_blank" rel="noreferrer">
-            @nightvibe
+            @barbierboreal
           </a>{' '}
           — suivez les coupes de la semaine
         </p>
@@ -334,17 +333,17 @@ export function Boutique() {
       <div className="container boutique reveal" ref={ref}>
         <div className="boutique-text" data-reveal-i style={{ ['--ri' as string]: 0 }}>
           <p className="overline">Partenaire</p>
-          <h2 className="section-title">Boutique La Cité</h2>
+          <h2 className="section-title">Boutique Boréale</h2>
           <p>
-            Streetwear et casquettes, en partenariat avec Night-Vibe. Montez à
-            la mezzanine, juste au-dessus des chaises.
+            Streetwear et casquettes, en partenariat avec Barbier Boréal. Montez
+            à la mezzanine, juste au-dessus des chaises.
           </p>
-          <p className="services-note">La mezzanine — 105 rue Valmont.</p>
+          <p className="services-note">La mezzanine — 212 rue Principale.</p>
         </div>
         <img
           className="boutique-photo"
-          src="/photos/boutique.jpg"
-          alt="Boutique La Cité, à la mezzanine au-dessus de Night-Vibe : vêtements et casquettes"
+          src={photo('boutique.jpg')}
+          alt="Boutique Boréale, à la mezzanine au-dessus de Barbier Boréal : vêtements et casquettes"
           width={1000}
           height={1332}
           loading="lazy"
@@ -389,13 +388,13 @@ export function Infos() {
           <div className="map-card" data-reveal-i style={{ ['--ri' as string]: 1 }}>
             <iframe
               className="map-frame"
-              title="Carte : Night-Vibe, 105 rue Valmont, Saint-Jérôme"
-              src="https://www.google.com/maps?q=105+rue+Valmont,+Saint-J%C3%A9r%C3%B4me,+QC&hl=fr&z=15&output=embed"
+              title="Carte : Barbier Boréal, 212 rue Principale, Saint-Sauveur"
+              src="https://www.google.com/maps?q=212+rue+Principale,+Saint-Sauveur,+QC&hl=fr&z=15&output=embed"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               allowFullScreen
             />
-            <p className="map-address">105 rue Valmont · Saint-Jérôme, QC</p>
+            <p className="map-address">212 rue Principale · Saint-Sauveur, QC</p>
           </div>
         </div>
       </div>
@@ -409,14 +408,14 @@ export function Footer() {
       <div className="container footer-inner">
         <div className="footer-brand">
           <LogoMark height={26} />
-          <span>Night-Vibe — Saint-Jérôme</span>
+          <span>Barbier Boréal — Saint-Sauveur</span>
         </div>
         <div className="footer-social">
           <a
             href={CONTACT.instagram}
             target="_blank"
             rel="noreferrer"
-            aria-label="Instagram de Night-Vibe"
+            aria-label="Instagram de Barbier Boréal"
           >
             <Instagram size={18} />
           </a>
@@ -424,12 +423,12 @@ export function Footer() {
             href={CONTACT.facebook}
             target="_blank"
             rel="noreferrer"
-            aria-label="Facebook de Night-Vibe"
+            aria-label="Facebook de Barbier Boréal"
           >
             <Facebook size={18} />
           </a>
         </div>
-        <p className="footer-credit">© 2026 Night-Vibe · Démo conçue par Nord Studio</p>
+        <p className="footer-credit">© 2026 Barbier Boréal · Démo conçue par Nord Studio</p>
       </div>
     </footer>
   );

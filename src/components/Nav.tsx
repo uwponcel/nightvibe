@@ -32,9 +32,9 @@ export function Nav() {
     <>
       <header className={`nav ${scrolled ? 'is-scrolled' : ''}`}>
         <div className="container nav-inner">
-          <a href="#" className="nav-logo" aria-label="Night-Vibe — accueil">
+          <a href="#" className="nav-logo" aria-label="Barbier Boréal — accueil">
             <LogoMark height={30} />
-            <span>Night-Vibe</span>
+            <span>Barbier Boréal</span>
           </a>
           <nav aria-label="Navigation principale">
             <ul className="nav-links">
